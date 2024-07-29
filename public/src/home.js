@@ -11,8 +11,21 @@ function getTotalAccountsCount(accounts) {
 function getBooksBorrowedCount(books) {
   // YOUR SOLUTION HERE
   // Hint: You can use the [`filter()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) method here. 
+  const borrowedBooksArray = [];
+  for (let book in books)
+  {
+    const bookInQueue = books[book];
+    for (let borrow in bookInQueue.borrows)
+    {
+      if (bookInQueue.borrows[borrow].returned === false) //Use of for/in loop
+      {
+        borrowedBooksArray.push(bookInQueue);
+      }
+    }   
+  }
+  
   // If you get stuck, feel free to take a look at this repl.it: https://replit.com/@thinkful/getBooksBorrowedCount#index.js
-  const borrowedBooksArray = books.filter((book) => book.borrows.find((borrow) => borrow.returned === false));
+  // (Working line of code)const borrowedBooksArray = books.filter((book) => book.borrows.find((borrow) => borrow.returned === false));
   return borrowedBooksArray.length;
 }
 
